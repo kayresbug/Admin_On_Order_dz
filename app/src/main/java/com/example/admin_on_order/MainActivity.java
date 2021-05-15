@@ -134,6 +134,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
         time = format2.format(calendar.getTime());
+        BackThread thread = new BackThread();  // 작업스레드 생성
+        thread.setDaemon(true);  // 메인스레드와 종료 동기화
+        thread.start();
         initFirebase();
     }
 
@@ -767,6 +770,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             Thread.sleep(300);
             MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.bell);
             mp.start();
+            builder.clearCommandBuffer();
+            builder2.clearCommandBuffer();
+            builder3.clearCommandBuffer();
             isPrinter.closePrint1(sam4sPrint);
             isPrinter.closePrint2(sam4sPrint2);
             isPrinter.closePrint3(sam4sPrint3);
@@ -803,7 +809,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
                     }
                 }
                 try {
-                    Thread.sleep(1000);   // 1000ms, 즉 1초 단위로 작업스레드 실행
+                    Thread.sleep(60000);   // 1000ms, 즉 1초 단위로 작업스레드 실행
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -915,6 +921,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             //sam4sPrint.sendData(builder);
             sam4sPrint.sendData(builder);
             //sam4sPrint.closePrinter();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1049,10 +1056,11 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             builder.addText("감사합니다.");
             builder.addCut(Sam4sBuilder.CUT_FEED);
             sam4sPrint.sendData(builder);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        builder.clearCommandBuffer();
         isPrinter.closePrint1(sam4sPrint);
 
     }

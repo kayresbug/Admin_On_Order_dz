@@ -47,7 +47,7 @@ public class isPrinter {
 
     public void closePrint1(Sam4sPrint sam4sPrint){
         try {
-            Thread.sleep(300);
+            Thread.sleep(600);
             sam4sPrint.closePrinter();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class isPrinter {
     }
     public void closePrint2(Sam4sPrint sam4sPrint){
         try {
-            Thread.sleep(300);
+            Thread.sleep(600);
             sam4sPrint.closePrinter();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class isPrinter {
     }
     public void closePrint3(Sam4sPrint sam4sPrint){
         try {
-            Thread.sleep(300);
+            Thread.sleep(600);
             sam4sPrint.closePrinter();
         } catch (InterruptedException e) {
             e.printStackTrace();
